@@ -1,0 +1,29 @@
+{
+	"name": "WordPress",
+
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "wordpress",
+
+	// Uncomment the appropriate line depending on plugin vs theme development.
+	// This should match the active volume mount in docker-compose.yml
+	"workspaceFolder": "/var/www/html",
+
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"php.suggest.basic": false
+			},
+			"extensions": [
+				"xdebug.php-pack",
+				"bmewburn.vscode-intelephense-client",
+				"wordpresstoolbox.wordpress-toolbox",
+				"hridoy.wordpress",
+				"johnbillion.vscode-wordpress-hooks"
+			],
+		}
+	},
+
+	// Sets up WordPress on container start.
+	"postCreateCommand": "/tmp/workspace/devcontainer/wp-setup.sh",
+	"remoteUser": "vscode"
+}

@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: wordpress.dockerfile
+    container_name: Webserver
+    depends_on:
+      - database
+    links:
+      - database
+    ports:
+      - "80:80"
+    env_file: .env
+    volumes:
+      - wcas-theme:/var/www/html/wp-content/themes/wcas-theme
+
+  database:
+    image: mariadb:10
+    container_name: MariaDB
+    ports:
+      - 3306:3306
+    env_file: .env
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: Mailhog
+    ports:
+      - "8003:1025"
+      - "8100:8025"
+    env_file: .env
+
+volumes:
+  wcas-theme:
