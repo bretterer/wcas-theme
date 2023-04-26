@@ -2,9 +2,7 @@ version: '3'
 
 services:
   wordpress:
-    build:
-      context: .
-      dockerfile: wordpress.dockerfile
+    build: ./
     container_name: Webserver
     depends_on:
       - database
@@ -12,9 +10,10 @@ services:
       - database
     ports:
       - "80:80"
+      - "9003:9003"
     env_file: .env
     volumes:
-      - wcas-theme:/var/www/html/wp-content/themes/wcas-theme
+      - ../wcas-theme:/var/www/html/wp-content/themes/wcas-theme
 
   database:
     image: mariadb:10

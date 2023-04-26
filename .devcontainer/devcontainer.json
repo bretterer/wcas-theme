@@ -19,11 +19,11 @@
 				"wordpresstoolbox.wordpress-toolbox",
 				"hridoy.wordpress",
 				"johnbillion.vscode-wordpress-hooks"
-			],
+			]
 		}
 	},
 
 	// Sets up WordPress on container start.
-	"postCreateCommand": "/tmp/workspace/devcontainer/wp-setup.sh",
+	"postCreateCommand": "cd /tmp && cp mailhog-dev.php /var/www/html/wp-content/plugins/mailhog-dev.php && ./wp-setup.sh",
 	"remoteUser": "vscode"
 }
